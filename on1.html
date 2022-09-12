@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            width: 500px;
+            line-height: 2;
+            margin: 0 auto;
+            border: 2px solid yellow;
+            padding-left: 100px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 20px;
+        }
+
+        .abc {
+            width: 200px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            height: 30px;
+        }
+
+        form>input {
+            margin-left: 35px;
+            height: 25px;
+            width: 70px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="" class="main">
+        <h2>Đăng kí học</h2>
+        <div class="tai">
+            <label for="">Họ tên</label>
+            <input type="text" id="hoten" class="abc">
+        </div>
+        <div class="tai">
+            <label for="">Tuổi</label>
+            <input type="number" id="age" class="abc">
+        </div>
+        <div class="tai">
+            <label for="">Giới tính</label>
+            <input type="radio" name="gioitinh">Nam
+            <input type="radio" name="gioitinh">Nữ
+        </div>
+        <div class="tai">
+            <label for="">Quê quán</label>
+            <select name="" id="quequan">
+                <option value="0">--Tỉnh--</option>
+                <option value="1">Hà Nội</option>
+                <option value="2">Đà Nẵng</option>
+                <option value="3">TP. Hồ Chí Minh</option>
+            </select>
+        </div>
+        <div class="tai">
+            <label for="">Địa chỉ email</label>
+            <input type="text" id="email" class="abc">
+        </div>
+        <div>
+            <label for="">Đơn hàng</label>
+            <input type="number" id="donhang" onkeyup="tinhTong()">
+
+        </div>
+        <div>
+            <label for="">Số lượng</label>
+            <input type="number" id="sl" onkeyup="tinhTong()">
+        </div>
+        <div>
+            <label for="">Tổng</label>
+            <input type="number" id="tong" onkeyup="tinhTong()">
+        </div>
+        <div class="tai">
+            <label for="">Điện thoại liên hệ</label>
+            <input type="number" id="phone" class="abc">
+        </div>
+        <div class="tai">
+            <label for="">Nơi ở hiện tại</label>
+            <textarea name="" id="text" cols="30" rows="10"></textarea>
+        </div>
+
+        <input type="button" value="Đồng ý" onclick="dangki()" class="dangki">
+        <input type="reset" value="Bỏ qua">
+    </form>
+    <script>
+        function dangki() {
+
+
+            var name = document.getElementById('hoten');
+            var age = document.getElementById('age');
+            var gioitinh = document.getElementsByName('gioitinh');
+            var quequan = document.getElementById('quequan');
+            var email = document.getElementById("email");
+            var phone = document.getElementById('phone');
+            var text = document.getElementById('text');
+
+            if (name.value.length == 0) {
+                alert("Họ tên không được để trống");
+                name.focus();
+                return false;
+            }
+            if (age.value <= 0) {
+                alert("Tuổi không được để trống và là số dương");
+                age.focus();
+                return false;
+            }
+            if (!gioitinh[0].checked && !gioitinh[1].checked) {
+                alert("Giới tính phải được chọn")
+                gioitinh.focus();
+                return false;
+            }
+            if (quequan.value == 0) {
+                alert("Phải chọn Quê quán");
+                quequan.focus();
+                return false;
+            }
+            if (email.value.length == 0) {
+                alert("Email không được để trống");
+                email.focus();
+                return false;
+            }
+            var ktemail = /\w+@\w+(\.\w+){1,2}/;
+            if (!email.value.match(ktemail)) {
+                alert("Email phải đúng định dạng")
+                email.focus();
+                return false;
+            }
+            var ktphone = /0\d{9}/;
+            if (!phone.value.match(ktphone)) {
+                alert("số điện thoại không được bỏ trống và phải đúng định dạng");
+                phone.focus();
+                return false;
+            }
+            // if (email.matches(ktemail)) {
+            //     alert("Email phải nhập đúng định dạng");
+            //     // email.focus();
+            // }
+            // if (phone.value.length != 10) {
+            //     alert("số điện thoại k được bỏ trống");
+            //     phone.focus();
+            //     return false;
+            // }
+            if (text.value >= 200) {
+                alert('Không được quá 200 kí tự')
+                text.focus();
+                return false;
+            }
+            else {
+                alert('Đăng kí thành công')
+            }
+        }
+        var donhang = document.getElementById('donhang');
+        var sl = document.getElementById('sl');
+        function tinhTong() {
+            document.getElementById('tong').value = donhang.value * sl.value;
+        }
+    </script>
+</body>
+
+</html>

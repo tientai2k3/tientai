@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hide{
+            display: none;
+        }
+        .square{
+            height: 100px;
+            width: 100px;
+            background-color: yellow;
+        }
+        .square.blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="shape" class="square blue"></div>
+    <button onclick="them()">click</button>
+    <button onclick="xoa()">xóa</button>
+    <button onclick="thaydoi()">thay đổi</button>
+
+    <script>
+        function them() {
+            document.getElementById("shape").classList.add("hide")
+            
+        }
+        function xoa(){
+            document.getElementById("shape").classList.remove("blue");
+        }
+
+    </script>
+</body>
+</html>
